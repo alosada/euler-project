@@ -9,7 +9,14 @@ class Euler
   end
 
   def sum_even_fib(limit)
-
+    fib = [0,1]
+    sum = 0
+    while fib.last < limit
+      fib << fib.inject(:+)
+      fib.slice!(0)
+      sum+= fib.last if fib.last%2==0
+    end
+    return sum
   end
 
 end
