@@ -8,10 +8,24 @@ class Euler
     return res
   end
 
+  def sum_even_fib(limit)
+    fib = [0,1]
+    sum = 0
+    while fib.last < limit
+      fib << fib.inject(:+)
+      fib.slice!(0)
+      sum+= fib.last if fib.last%2==0
+    end
+    return sum
+  end
+
 end
 
 
 ### SIMPLE TESTS ###
 
-print "Multiples of 3 & 5 are equal to 23: "
+print "Q1: Multiples of 3 & 5 are equal to 23: "
 p Euler.multiples(10)==23
+
+print "Q2: Sum of first 10 even fibonnacci numbers is 44: "
+p Euler.sum_even_fib(89)==44
