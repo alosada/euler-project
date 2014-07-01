@@ -8,7 +8,7 @@ class Euler
     return res
   end
 
-  def sum_even_fib(limit)
+  def self.sum_even_fib(limit)
     fib = [0,1]
     sum = 0
     while fib.last < limit
@@ -17,6 +17,10 @@ class Euler
       sum+= fib.last if fib.last%2==0
     end
     return sum
+  end
+
+  def self.largest_prime(limit)
+
   end
 
 end
@@ -29,3 +33,6 @@ p Euler.multiples(10)==23
 
 print "Q2: Sum of first 10 even fibonnacci numbers is 44: "
 p Euler.sum_even_fib(89)==44
+
+print "Q3: LArgest prime factor of 13195 is 29: "
+p Euler.largest_prime(13196)==29
