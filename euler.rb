@@ -1,3 +1,5 @@
+require 'prime'
+
 ### Q1 ####
 
 class Euler
@@ -20,7 +22,13 @@ class Euler
   end
 
   def self.largest_prime(limit)
-
+    factor = 2
+    i=1
+    while i < limit do
+      factor = i if limit % i == 0 && Prime.prime?(i)
+      i+=1
+    end
+    return factor
   end
 
 end
@@ -34,5 +42,5 @@ p Euler.multiples(10)==23
 print "Q2: Sum of first 10 even fibonnacci numbers is 44: "
 p Euler.sum_even_fib(89)==44
 
-print "Q3: LArgest prime factor of 13195 is 29: "
-p Euler.largest_prime(13196)==29
+print "Q3: Largest prime factor of 13195 is 29: "
+p Euler.largest_prime(13195)==29
