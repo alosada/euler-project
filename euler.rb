@@ -1,19 +1,17 @@
 require 'prime'
 
-### Q1 ####
-
 class Euler
 
-  def self.multiples(limit)
+  def self.problem01(limit)
     res= 0
     (1...limit).each{|x| res+=x if x%3==0 || x%5==0}
     return res
   end
 
-  def self.sum_even_fib(limit)
+  def self.problem02(limit)
     fib = [0,1]
     sum = 0
-    while fib.last < limit
+    while fib.inject(:+) < limit
       fib << fib.inject(:+)
       fib.slice!(0)
       sum+= fib.last if fib.last%2==0
@@ -21,33 +19,46 @@ class Euler
     return sum
   end
 
-  def self.largest_prime(limit)
+  def self.problem03(limit)
     primes = []
     Prime.each(100000) do |prime|
       if limit % prime == 0
         primes << prime
       end
     end
-    return primes.max
+    primes.max
+  end
 
+  def self.problem04(limit)
+    first=limit
+    i=9
+    while i > 0
+      while first > i*limit/10
+        second = limit
+        while second > i*limit/10
+          result = first*second
+          return result if result.to_s == result.to_s.reverse
+          second-=1
+        end
+        first -= 1
+      end
+    i-=1
+    end
   end
 
 end
 
 
-### SIMPLE TESTS ###
+### Answers! ###
 
-print "Q1 test: Multiples of 3 & 5 are equal to 23: "
-p Euler.multiples(10)==23
 print "Q1 answer: "
-p Euler.multiples(1000)
+p Euler.problem01(1000)
 
-print "Q2 test: Sum of first 10 even fibonnacci numbers is 44: "
-p Euler.sum_even_fib(89)==44
 print "Q2 answer: "
-p Euler.sum_even_fib(4000000)
+p Euler.problem02(4000000)
 
-print "Q3 test: Largest prime factor of 13195 is 29: "
-p Euler.largest_prime(13195) == 29
 print "Q3 answer: "
-p Euler.largest_prime(600851475143)
+p Euler.problem03(600851475143)
+
+print "Q4 answer: "
+p Euler.problem04(999)
