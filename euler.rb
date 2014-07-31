@@ -46,19 +46,54 @@ class Euler
     end
   end
 
+  def self.problem05(limit)
+    divisible = 1
+    primes=Prime.take_while {|prime| prime < limit }
+    while limit > 1
+      primes.each do |prime|
+        power = Math.log(limit)/Math.log(prime)
+        if power - power.floor == 0
+          divisible *= prime**power
+          primes.delete(prime)
+          break
+        end
+      end
+      limit -= 1
+    end
+    divisible.to_i
+  end
+
+  def self.problem06(limit)
+    sum_of_squares=0
+    square_of_sum=0
+    while limit > 0
+      sum_of_squares += limit ** 2
+      square_of_sum += limit
+      limit -= 1
+    end
+    square_of_sum = square_of_sum ** 2
+    square_of_sum - sum_of_squares
+  end
+
 end
 
 
 ### Answers! ###
 
-print "Q1 answer: "
+print "Problem 01 answer: "
 p Euler.problem01(1000)
 
-print "Q2 answer: "
+print "Problem 02 answer: "
 p Euler.problem02(4000000)
 
-print "Q3 answer: "
+print "Problem 03 answer: "
 p Euler.problem03(600851475143)
 
-print "Q4 answer: "
+print "Problem 04 answer: "
 p Euler.problem04(999)
+
+print "Problem 05 answer: "
+p Euler.problem05(20)
+
+print "Problem 06 answer: "
+p Euler.problem06(100)
